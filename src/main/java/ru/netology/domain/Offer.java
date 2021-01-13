@@ -20,7 +20,6 @@ public class Offer implements Comparable<Offer> {
         this.travelTime = travelTime;
     }
 
-
     @Override
     public int compareTo(Offer o) {
         return amount - o.amount;
