@@ -55,7 +55,6 @@ public class OfferManagerTestWithoutMock {
                 "Ошибка удаления несуществующего предложения из репо поломалась");
     }
 
-
     @Test
     @DisplayName("Поиск предложений по несуществующему направлению")
     public void shouldShowNotFoundExceptionFromSearch() {

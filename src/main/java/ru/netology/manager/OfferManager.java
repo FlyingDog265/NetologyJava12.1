@@ -29,10 +29,10 @@ public class OfferManager {
                 System.arraycopy(result, 0, tmp, 0, result.length);
                 tmp[tmp.length - 1] = offer;
                 result = tmp;
-                Arrays.sort(result);
             }
         }
         if (result.length == 0) throw new NotFoundException("Предложения не найдены!");
+        Arrays.sort(result);
         return result;
     }
 
