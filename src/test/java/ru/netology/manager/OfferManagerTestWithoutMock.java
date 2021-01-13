@@ -60,7 +60,9 @@ public class OfferManagerTestWithoutMock {
     public void shouldShowNotFoundExceptionFromSearch() {
         manager.add(first);
         manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
         assertThrows(NotFoundException.class, () -> manager.findAll("PIT", "BUL"),
-                "Ошибка удаления несуществующего предложения из репо поломалась");
+                "Ошибка поиска несуществующего предложения поломалась");
     }
 }
