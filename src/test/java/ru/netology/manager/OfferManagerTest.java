@@ -7,9 +7,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.netology.domain.Offer;
+import ru.netology.helpers.NotFoundException;
 import ru.netology.repository.OfferRepository;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doReturn;
 
 @ExtendWith(MockitoExtension.class)
@@ -71,5 +73,31 @@ class OfferManagerTest {
 
         Offer[] actual = manager.findAll("LED", "SVO");
         assertArrayEquals(excepted, actual, "Найденные направления не соответствуют ожидаемому результату!");
+    }
+
+    @Test()
+    @DisplayName("Поиск по пустому репозиторию")
+    public void shouldReturnNothingFromNothing() {
+        Offer[] returned = new Offer[]{};
+
+        doReturn(returned)
+                .when(repository)
+                .findAll();
+
+        assertThrows(NotFoundException.class, () -> manager.findAll("PIT", "BUL"),
+                "Ошибка поиска несуществующего предложения поломалась");
+    }
+
+    @Test()
+    @DisplayName("Поиск несуществующего направления")
+    public void shouldReturnNothing() {
+        Offer[] returned = new Offer[]{first, second, third, fourth, fifth, sixth, seventh, eighth};
+
+        doReturn(returned)
+                .when(repository)
+                .findAll();
+
+        assertThrows(NotFoundException.class, () -> manager.findAll("PIT", "BUL"),
+                "Ошибка поиска несуществующего предложения поломалась");
     }
 }

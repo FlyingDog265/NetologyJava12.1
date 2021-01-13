@@ -54,15 +54,4 @@ public class OfferManagerTestWithoutMock {
         assertThrows(NotFoundException.class, () -> manager.removeById(228),
                 "Ошибка удаления несуществующего предложения из репо поломалась");
     }
-
-    @Test
-    @DisplayName("Поиск предложений по несуществующему направлению")
-    public void shouldShowNotFoundExceptionFromSearch() {
-        manager.add(first);
-        manager.add(second);
-        manager.add(third);
-        manager.add(fourth);
-        assertThrows(NotFoundException.class, () -> manager.findAll("PIT", "BUL"),
-                "Ошибка поиска несуществующего предложения поломалась");
-    }
 }
